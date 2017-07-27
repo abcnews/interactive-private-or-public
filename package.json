@@ -4,7 +4,9 @@
     "description": "A basic ABC News story.",
     "license": "MIT",
     "private": true,
-    "contributors": ["Nathan Hoad <nathan@nathanhoad.net>"],
+    "contributors": [
+        "Nathan Hoad <nathan@nathanhoad.net>"
+    ],
     "scripts": {
         "start": "aunty serve --debug"
     },
@@ -16,6 +18,7 @@
         "type": "basic-story"
     },
     "dependencies": {
+        "domready": "^1.0.8",
         "vue": "^2.4.2"
     },
     "browser": {

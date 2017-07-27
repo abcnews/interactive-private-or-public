@@ -22,10 +22,7 @@ module.exports = `<div id="app" v-cloak>
             </div>
         </div>
         <div class="face">
-            <img v-if="face === 'smug'" src="face-smug.png" />
-            <img v-if="face === 'thinking'" src="face-thinking.png" />
-            <img v-if="face === 'startled'" src="face-startled.png" />
-            <img v-if="face === 'alarmed'" src="face-alarmed.png" />
+            <img v-bind:src="face" />
         </div>
     </div>
     <div v-if="!canChoose">

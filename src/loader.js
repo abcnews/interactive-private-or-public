@@ -53,7 +53,9 @@ module.exports.getCounterArguments = function() {
             }
 
             el = el.nextSibling;
-            el.previousSibling.remove();
+            if (el && el.previousSibling) {
+                el.previousSibling.remove();
+            }
         }
 
         heading.remove();
@@ -88,7 +90,9 @@ module.exports.getSummary = function() {
         }
 
         el = el.nextSibling;
-        el.previousSibling.remove();
+        if (el && el.previousSibling) {
+            el.previousSibling.remove();
+        }
     }
 
     ORIGINAL_SUMMARY = '' + html;
