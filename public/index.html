@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>How will automation change your job?</title>
+    <link rel="stylesheet" href="index.css" /> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        header {
+            text-align: left;
+            max-width: 960px;
+            margin: 20px auto;
+            text-align: center;
+            font-family: Arial, sans-serif;
+            color: #555;
+        }
+        h2 {
+            position: relative;
+            margin: 0 0 10px 0;
+            padding: 0;
+            color: #111;
+            font-size: 30px;
+            font-family: "ProximaNova","Interval Sans Pro","Proxima Nova",sans-serif;
+            font-weight: bold;
+            line-height: 40px;
+            letter-spacing: 0;
+        }
+        h2 strong {
+            display: block;
+            font-size: 50px;
+            line-height: 60px;
+            color: black;
+            text-transform: uppercase;
+            font-weight: normal;
+            letter-spacing: 2px;
+        }
+        .subheading {
+            font-size: 20px;
+            margin-bottom: 30px;
+        }
+        .byline {
+            font-size: 15px;
+        }
+        .byline a {
+            color: #555;
+        }
+        
+        section {
+            max-width: 700px;
+            margin:20px auto;
+        }
+        footer {
+            max-width: 700px;
+            margin:20px auto;
+        }
+        </style>
+    </head>
+    <body>
+        <header>
+            <h2>
+                The Impossible Choice: 
+                <strong>private vs public school</strong>
+            </h2>
+            <div class="subheading">How do you know you're choosing the right school for your child?</div>
+            <div class="byline"><a href="blah">Someone</a> and <a href="blah">Someone Else</a></div>
+        </header>
+  
+        <section>
+            <div id="app" v-cloak>
+                <div class="arguments">
+                    <div v-for="html in args" v-html="html">
+                    </div>
+                </div>
+                <div v-if="canChoose">
+                    <div class="choices">
+                        <div v-on:click="updateChoice('privateSchool')" class="choice choose-private">
+                            <img src="balloon-private.png" />
+                        </div>
+                        <div v-on:click="updateChoice('publicSchool')" class="choice choose-public">
+                            <img src="balloon-public.png" />
+                        </div>
+                        <div class="family">
+                            <img src="family.png" />
+                        </div>
+                    </div>
+                </div>
+                <div v-if="!canChoose">
+                    <p>Schooling is what economists call an "experience good". That means you don't know if you've made a good choice until you've actually experienced the school. Often, parents are being asked to choose, or plan for, a school many years in advance.</p>
+
+                    <p>The important thing is to remember there is no perfect choice, but you can use the tools at your disposal to make a good choice:</p>
+
+                    <ul>
+                        <li>Go to Open Days</li>
+                        <li>It's all about the principal, so meet the principal. David Gillespie recommends asking him or her how they manage the teaching staff. You want the one who says they don't have a magic solution, but they have a plan for incremental improvement and goals for academic performance.</li>
+                        <li>If you're into the bigger picture, use the Myschool website. We've never had such a wealth of data available about schooling, yet only about a fifth of parents are using the site.</li>
+                        <li>Use your social network. Think about a child similar to your own. How did going through the school help or hinder them?</li>
+                        <li>Get a copy of the school newsletter. It will say a lot about the school's priorities.</li>
+                    </ul>
+                    
+                    <button v-on:click="reset">Try again</button>
+                </div>
+            </div>
+        </section>
+
+        <div style="display:none">
+            <div class="private-school">
+                <p>You get what you pay for, right?</p>
+                <p>If parents and all other taxpayers are pouring money into the education of private school children, then the academic results must be streets ahead of state schools students. Only, they're not.</p>
+                <p>There is a growing body of evidence to suggest that the type of school does not make much difference to scores if socio-economic differences are taken into account.</p>
+                <p>David Gillespie, author of Free Schools, says that the most important things are good teachers and a good principal, and they can be found in public schools too.</p>
+                <p>"Non-government schools do have more money than state schools and in some independent schools, that money makes its way into the pockets of better performing teachers and more administration staff but more commonly, all that extra dosh ends up in new buildings.</p>
+                <p>"Whatever's happening to the dough, it isn't changing educational outcomes at the individual level.</p>
+                <p>"Studies have consistently shown that when you adjust for the socio-economic status of the children in the systems, all three Australian systems are equally effective (or equally ineffective).</p>
+                <p>"Paying more for education will definitely get you nicer buildings and newer computers. And it will definitely allow Dick to hang around with more kids of 'his class' (assuming that's a benefit).</p>
+                <p>"But it won't get him a better education, and he won't perform any better than he would have performed anyway."</p>
+            </div>
+            
+            <div class="private-school">
+                <p>Even if you did get slightly better results, is it really worth all that money?</p>
+
+                <p>Even if you choose public primary school and pay for a private high school, the total cost for a child born in 2017 will still be an estimated - take a deep breath - $265,624. Per child. Because it's not just fees to consider. What about uniforms (a blazer costs $200+), the latest textbooks, a tablet/laptop, school shoes, and transport (the best private school in your price range might be a lot further from your house than the local state high school)?</p>
+
+                <p>You could do a lot of other things with that much money http://www.smh.com.au/money/private-v-public--an-educated-guess-20110412-1dbok.html</p>
+
+                <ul>
+                    <li>go overseas</li>
+                    <li>pay for tutors</li>
+                    <li>give them a deposit for their first place</li>
+                    <li>pay their HECS fees</li>
+                    <li>buy a house in an area that has better public schools</li>
+                    <li>invest in shares or property</li>
+                    <li>buy a farm</li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="public-school">
+                <p>Why don't your kids deserve the best (or at least the best you can afford)?</p>
+                <p>A succession of funding decisions by federal governments means that private schools have the ability to provide better technology, newer buildings, bigger swimming pools, and sometimes attract better teachers.</p>
+                <p>For many parents, these differences (visible and perceived) are key to sending their children to private school.</p>
+                <p>"Some of the parents I studied were contemplating private schools with twice the level of resources per student, and more than ten times the spending on capital works (including five times more capital funding from government) than the nearest public secondary school," says Associate Professor Joel Windle.</p>
+                <p>"This extra funding is reflected in sporting and music programs and state-of-the-art science facilities."</p>
+                <p>Does your child have a particular talent or interest that could be encouraged by better resources? Does your local high school have the best resources available for him or her?</p>
+                <p>How good is the library at your local school? Are the classrooms comfortable and air conditioned?</p>
+            </div>
+            
+            <div class="public-school">
+                <p>Access to old boys'/girls' network</p>
+                <p>These days, 35 per cent of parents are choosing to send their child to private school. Although this percentage appears to have stagnated, it's still a significant number of people, and overwhelmingly made up of high-income families.</p>
+                <p>Have you thought about what advantages your child could gain from a) being part of a school where achievement is expected b) making connections with others who are likely to become future leaders and c) having a reputable school on their resume as they start their working life?</p>
+                <p>Even if you like the idea of your child getting to mix with people from all walks of life at school - maybe to toughen them up or teach them empathy - you might not like the thought of them missing out on opportunities in the future because of where they went to school.</p>
+                <p>Consider this scenario, relayed by public school graduate Rebecca Douglas after a conversation with a couple of lawyer friends:</p>
+                <p>My friend's firm had been inundated by applications and had chosen to filter them by insisting on grades of at least a distinction average (fair enough) and by eliminating all the public school applicants, regardless of merit (very much </p><p>not). Apparently the reasoning was that private school kids would likely have connections that could benefit the firm. My other friend chimed in to say that her employer had taken the same approach.</p><p>It's not clear how widespread this sort of prejudice is, but given that a third of the population is going to private schools, how certain can you be that your child will not get pushed aside by unconscious bias from a potential boss who didn't go through the public system?</p>
+            </div>
+        </div>
+
+        <script src="index.js"></script>
+        
+    </body>
+</html>

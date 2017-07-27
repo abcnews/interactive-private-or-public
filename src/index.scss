@@ -1,0 +1,112 @@
+// mobile: only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2)
+// tablet: only screen and (max-device-width: 768px)
+
+// Hide Vue until it loads
+[v-cloak] {
+    display: none;
+}
+
+.choices {
+    overflow: hidden;
+    width: 100%;
+}
+
+.family {
+    clear: both;
+
+    img {
+        display: block;
+        margin: auto;
+    }
+}
+
+.choice {
+    width: 50%;
+    float: left;
+    cursor: pointer;
+
+    img {
+        max-width: 100%;
+    }
+}
+
+.arguments {
+    font-family: Arial, sans-serif;
+}
+
+@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    .arguments {
+        padding: 5px;
+    }
+}
+
+.argument {
+    margin-bottom: 20px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+
+    h3 {
+        margin: 0;
+        padding: 10px 20px;
+        color: white;
+        text-align: center;
+        font-weight: normal;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    p {
+        margin: 0 0 20px 0;
+        padding: 0;
+        text-align: justify;
+    }
+}
+
+@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
+    .argument {
+        h3 {
+            padding: 10px;
+        }
+
+        .content {
+            padding: 10px;
+        }
+    }
+}
+
+.privateSchool {
+    margin-right: 10%;
+    border: 1px solid #0d3c87;
+
+    h3 {
+        background: #0d3c87;
+    }
+}
+
+.publicSchool {
+    margin-left: 10%;
+    border: 1px solid #137c0d;
+
+    h3 {
+        background: #137c0d;
+    }
+}
+
+.open {
+    overflow: hidden;
+
+    animation-name: open;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+}
+
+@keyframes open {
+    0% {
+        max-height: 0;
+    }
+    100% {
+        max-height: 1000px;
+    }
+}
