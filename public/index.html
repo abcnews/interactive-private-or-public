@@ -8,7 +8,7 @@
         header {
             text-align: left;
             max-width: 960px;
-            margin: 20px auto;
+            margin: 20px auto 80px auto;
             text-align: center;
             font-family: Arial, sans-serif;
             color: #555;
@@ -63,98 +63,209 @@
             <div class="subheading">How do you know you're choosing the right school for your child?</div>
             <div class="byline"><a href="blah">Someone</a> and <a href="blah">Someone Else</a></div>
         </header>
-  
-        <section>
-            <div id="app" v-cloak>
-                <div class="arguments">
-                    <div v-for="html in args" v-html="html">
-                    </div>
-                </div>
-                <div v-if="canChoose">
-                    <div class="choices">
-                        <div v-on:click="updateChoice('privateSchool')" class="choice choose-private">
-                            <img src="balloon-private.png" />
-                        </div>
-                        <div v-on:click="updateChoice('publicSchool')" class="choice choose-public">
-                            <img src="balloon-public.png" />
-                        </div>
-                        <div class="family">
-                            <img src="family.png" />
-                        </div>
-                    </div>
-                </div>
-                <div v-if="!canChoose">
-                    <p>Schooling is what economists call an "experience good". That means you don't know if you've made a good choice until you've actually experienced the school. Often, parents are being asked to choose, or plan for, a school many years in advance.</p>
-
-                    <p>The important thing is to remember there is no perfect choice, but you can use the tools at your disposal to make a good choice:</p>
-
-                    <ul>
-                        <li>Go to Open Days</li>
-                        <li>It's all about the principal, so meet the principal. David Gillespie recommends asking him or her how they manage the teaching staff. You want the one who says they don't have a magic solution, but they have a plan for incremental improvement and goals for academic performance.</li>
-                        <li>If you're into the bigger picture, use the Myschool website. We've never had such a wealth of data available about schooling, yet only about a fifth of parents are using the site.</li>
-                        <li>Use your social network. Think about a child similar to your own. How did going through the school help or hinder them?</li>
-                        <li>Get a copy of the school newsletter. It will say a lot about the school's priorities.</li>
-                    </ul>
-                    
-                    <button v-on:click="reset">Try again</button>
-                </div>
-            </div>
-        </section>
-
-        <div style="display:none">
-            <div class="private-school">
-                <p>You get what you pay for, right?</p>
-                <p>If parents and all other taxpayers are pouring money into the education of private school children, then the academic results must be streets ahead of state schools students. Only, they're not.</p>
-                <p>There is a growing body of evidence to suggest that the type of school does not make much difference to scores if socio-economic differences are taken into account.</p>
-                <p>David Gillespie, author of Free Schools, says that the most important things are good teachers and a good principal, and they can be found in public schools too.</p>
-                <p>"Non-government schools do have more money than state schools and in some independent schools, that money makes its way into the pockets of better performing teachers and more administration staff but more commonly, all that extra dosh ends up in new buildings.</p>
-                <p>"Whatever's happening to the dough, it isn't changing educational outcomes at the individual level.</p>
-                <p>"Studies have consistently shown that when you adjust for the socio-economic status of the children in the systems, all three Australian systems are equally effective (or equally ineffective).</p>
-                <p>"Paying more for education will definitely get you nicer buildings and newer computers. And it will definitely allow Dick to hang around with more kids of 'his class' (assuming that's a benefit).</p>
-                <p>"But it won't get him a better education, and he won't perform any better than he would have performed anyway."</p>
-            </div>
-            
-            <div class="private-school">
-                <p>Even if you did get slightly better results, is it really worth all that money?</p>
-
-                <p>Even if you choose public primary school and pay for a private high school, the total cost for a child born in 2017 will still be an estimated - take a deep breath - $265,624. Per child. Because it's not just fees to consider. What about uniforms (a blazer costs $200+), the latest textbooks, a tablet/laptop, school shoes, and transport (the best private school in your price range might be a lot further from your house than the local state high school)?</p>
-
-                <p>You could do a lot of other things with that much money http://www.smh.com.au/money/private-v-public--an-educated-guess-20110412-1dbok.html</p>
-
-                <ul>
-                    <li>go overseas</li>
-                    <li>pay for tutors</li>
-                    <li>give them a deposit for their first place</li>
-                    <li>pay their HECS fees</li>
-                    <li>buy a house in an area that has better public schools</li>
-                    <li>invest in shares or property</li>
-                    <li>buy a farm</li>
-                </ul>
-            </div>
-            
-            
-            
-            <div class="public-school">
-                <p>Why don't your kids deserve the best (or at least the best you can afford)?</p>
-                <p>A succession of funding decisions by federal governments means that private schools have the ability to provide better technology, newer buildings, bigger swimming pools, and sometimes attract better teachers.</p>
-                <p>For many parents, these differences (visible and perceived) are key to sending their children to private school.</p>
-                <p>"Some of the parents I studied were contemplating private schools with twice the level of resources per student, and more than ten times the spending on capital works (including five times more capital funding from government) than the nearest public secondary school," says Associate Professor Joel Windle.</p>
-                <p>"This extra funding is reflected in sporting and music programs and state-of-the-art science facilities."</p>
-                <p>Does your child have a particular talent or interest that could be encouraged by better resources? Does your local high school have the best resources available for him or her?</p>
-                <p>How good is the library at your local school? Are the classrooms comfortable and air conditioned?</p>
-            </div>
-            
-            <div class="public-school">
-                <p>Access to old boys'/girls' network</p>
-                <p>These days, 35 per cent of parents are choosing to send their child to private school. Although this percentage appears to have stagnated, it's still a significant number of people, and overwhelmingly made up of high-income families.</p>
-                <p>Have you thought about what advantages your child could gain from a) being part of a school where achievement is expected b) making connections with others who are likely to become future leaders and c) having a reputable school on their resume as they start their working life?</p>
-                <p>Even if you like the idea of your child getting to mix with people from all walks of life at school - maybe to toughen them up or teach them empathy - you might not like the thought of them missing out on opportunities in the future because of where they went to school.</p>
-                <p>Consider this scenario, relayed by public school graduate Rebecca Douglas after a conversation with a couple of lawyer friends:</p>
-                <p>My friend's firm had been inundated by applications and had chosen to filter them by insisting on grades of at least a distinction average (fair enough) and by eliminating all the public school applicants, regardless of merit (very much </p><p>not). Apparently the reasoning was that private school kids would likely have connections that could benefit the firm. My other friend chimed in to say that her employer had taken the same approach.</p><p>It's not clear how widespread this sort of prejudice is, but given that a third of the population is going to private schools, how certain can you be that your child will not get pushed aside by unconscious bias from a potential boss who didn't go through the public system?</p>
-            </div>
-        </div>
+        
+        <p>** Possible things to include in the blurb at the top** How do you know you're choosing the right school for your child?</p>
+        <ul>
+            <li>There is a long delay between making the choice and the end result. </li>
+            <li>Schooling is what economists call an "experience good". "A product or service where product characteristics, such as quality or price, are difficult to observe in advance, but these characteristics can be ascertained upon consumption."</li>
+            <li>There are so many variables, making the perfect choice is impossible. </li>
+        </ul>
+        
+        <div id="interactive"></div>
+        
+        <h2>I'm choosing a private school</h2>
+        
+        
+        <p>Counter argument 1</p>
+        
+        <p>You get what you pay for, right? </p>
+        <p>If parents and all other taxpayers are pouring money into the education of private school children, then the academic results must be streets ahead of state schools students. Only, they're not.</p>
+        <p>There is a <a href="/news/2015-04-14/study-finds-no-academic-edge-for-private-school-students/6390936" target="_self" title="">growing</a> <a href="http://www.theage.com.au/victoria/private-versus-public-schools-which-has-the-academic-edge-20160328-gns82d.html" target="_self" title="">body</a> of <a href="http://www.theage.com.au/national/education/thirty-studies-and-15--years-later-review-shows-public-schools-produce-same-results-20150415-1mlrvg" target="_self" title="">evidence</a> to suggest that the type of school does not make much difference to scores if socio-economic differences are taken into account.</p>
+        <p>David Gillespie, author of Free Schools, says that the most important things are good teachers and a good principal, and they can be found in public schools too.</p>
+        <p>"Non-government schools do have more money than state schools and in some independent schools, that money makes its way into the pockets of better performing teachers and more administration staff but more commonly, all that extra dosh ends up in new buildings.</p>
+        <p>"Whatever's happening to the dough, it isn't changing educational outcomes at the individual level.</p>
+        <p>"Studies have consistently shown that when you adjust for the socio-economic status of the children in the systems, all three Australian systems are equally effective (or equally ineffective).</p>
+        <p>"Paying more for education will definitely get you nicer buildings and newer computers. And it will definitely allow Dick to hang around with more kids of 'his class' (assuming that's a benefit).</p>
+        <p>"But it won't get him a better education, and he won't perform any better than he would have performed anyway."</p>
+        
+        
+        <p>Counter argument 2</p>
+        
+        <p>Even if you did get slightly better results, is it really worth all that money?</p>
+        <p>Even if you choose public primary school and pay for a private high school, the total cost for a child born in 2017 <a href="https://www.asg.com.au/edcosts" target="_self" title="">will still be an estimated</a> - take a deep breath - $265,624. Per child. Because it's not just fees to consider. What about uniforms (a blazer costs $200+), the latest textbooks, a tablet/laptop, school shoes, and transport (the best private school in your price range might be a lot further from your house than the local state high school)?</p>
+        <p>You could do a lot of other things with that much money http://www.smh.com.au/money/private-v-public--an-educated-guess-20110412-1dbok.html</p>
+        <ul>
+            <li>go overseas</li>
+            <li>pay for tutors</li>
+            <li>give them a deposit for their first place</li>
+            <li>pay their HECS fees</li>
+            <li>buy a house in an area that has better public schools</li>
+            <li>invest in shares or property</li>
+            <li>buy a farm</li>
+        </ul>
+        
+        
+        <p>Counter argument 3</p>
+        
+        <p>So you're not put off by the costs involved. What are those costs doing to our 'egalitarian' education system?</p>
+        <p>Free education is a good way to improve equality, but over the past few decades, the make-up of government and non-government secondary schools has shifted. </p>
+        <p>They once had roughly the same proportions of students from low-income and high-income families, but now government schools have <a href="http://www.barbaraprestonresearch.com.au/wp-content/uploads/2013-BPreston-Report-for-AEU-Social-make-up-of-schools-.pdf" target="_self" title="">almost twice the proportion</a> of students from low-income families compared to high-income families, and vice versa for non-government schools. Australians would like to think our education system guarantees everyone a fair go, but we now have one of the most stratified systems in the world. So what?</p>
+        <p>Disadvantaged students perform better when children from advantaged backgrounds are spread around the education system. When they are all pooled together, disadvantage is compounded and overall results tumble. </p>
+        <p>Compared to Canada, our school students are more socially divided. Even though our economies and society are quite similar, Canada regularly outperforms us on international league tables like PISA.</p>
+        <p>When the education system is not socially integrated, students from low-income families also <a href="http://www.tandfonline.com/doi/full/10.1080/02680939.2013.846414#.UxPRlIWv-cg" target="_self" title="">miss out on a more advanced curriculum</a> in core subjects like maths and sciences.</p>
+        <p>We are now in a situation where socioeconomic status predicts a child's academic scores. This is not what happens when an education system functions well. David Gillespie writes: </p>
+        <blockquote>
+            <p>"It is an undeniable fact of education statistics that socio-economic status predicts academic performance. On average, the children of low-income parents do not perform as well academically as the children of high-income parents. Too many academic writers are willing to put that down to better breeding (whatever that may be), but the reality is that it's a symptom of an ineffectual (and dysfunctional) education system. IQ is not influenced by a person's socio-economic status, but it's a testament to the failure of our education system that academic performance is."</p>
+        </blockquote>
+        <p>Alternate Gillespie quote: "A good education system should be able to overcome any inherent disadvantage and ensure that students perform to their full potential regardless of their home environment or their parents' jobs."</p>
+        <p>The <a href="http://apo.org.au/files/Resource/the_state_of_australias_schools_final.pdf" target="_self" title="">Centre for Policy Development</a> says we need to think about how our choices are affecting the future:</p>
+        <blockquote>
+            <p>"As a society we have made the choice to allow advantaged students to aggregate together and to gain the benefits of that aggregation. Equity demands that we don't disadvantage those who can't access those benefits. The policy response to this imperative has been to provide extra support for disadvantaged students and schools - and to sing the praises of schools that seem to make a difference. That's fine to a point, but it isn't enough, the response is patchy and still leaves too many schools struggling against a tide of residualisation." </p>
+        </blockquote>
+        
+        
+        <p>Counter argument 4</p>
+        
+        <p>Not convinced that equal access to a good education matters? How about the knock-on effects?</p>
+        <p>What happens socially when children from low-income families are segregated from more advantaged children?</p>
+        <p>Grattan Institute education expert Peter Goss says this separation tends to reinforce the gaps between students, makes teaching harder (if more disengaged kids are in together), and there is a risk that social division can breed intergenerational poverty. </p>
+        <p>He says it makes society more risky and uneven, and there is some evidence that countries grow more slowly as a result.</p>
+        <p>We are now seeing this phenomenon reflected in wider society; over the past 20 years in Australia, <a href="https://theconversation.com/income-and-wealth-inequality-how-is-australia-faring-23483" target="_self" title="">income inequality has grown</a> and incomes in our cities are spatially segregated, with <a href="https://theconversation.com/what-did-the-rich-man-say-to-the-poor-man-why-spatial-inequality-in-australia-is-no-joke-73841" target="_self" title="">high and low earners concentrated in different suburbs</a>. </p>
+        <p>What happens when people from high-income families rarely meet someone from a different background, from their first days at school and continuing all the way through their life? </p>
+        <p>In 1984, <a href="http://www.barbaraprestonresearch.com.au/wp-content/uploads/2013-BPreston-Report-for-AEU-Social-make-up-of-schools-.pdf" target="_self" title="">researcher Barbara Preston</a> introduced the idea of residualisation, arguing that the way schools are funded (with an injection of funds from the Commonwealth for private schools) was leading to a situation where disadvantaged students were left behind and those in the upper classes were less and less likely to want to support them.</p>
+        <p>"This loss of support is not only in direct participation, but also in financial and political support," she said.</p>
+        <p>Left behind by our segregated schooling system, then cut off by more advantaged people who haven't ever come face-to-face with someone who actually struggles financially.</p>
+        <p>Surely a system that is designed to lift people up from poverty should be doing better than this?</p>
+        
+        
+        <p>Counter argument 5</p>
+        
+        <p>If you don't care about the social effects, what about the waste of Commonwealth funds?</p>
+        <p>By any measure, Australia gives an extraordinary amount of money to private schools. </p>
+        <p>The funding model is complicated, but - starting with science block grants for all schools in 1964 and cemented by governments in various ways ever since - all types of schools receive funds from both state and federal governments. </p>
+        <p>David Gillespie writes in Free Schools: "Australian governments now spend just 68.6 per cent of their education budget on their own schools (the rest is spent on 'private' schools). By way of comparison, the governments of the United States spend 99.2 per cent, Finland 88.1 per cent and Korea 85.2 per cent of their education budgets on government schools."</p>
+        <p>Public school students receive more government funding, but private school students receive more total funding due to their parents' contributions. </p>
+        <p>And those fees are being propped up to a huge degree by Commonwealth money, as this chart shows:</p>
+        <p>http://www.abc.net.au/news/interactives/chart/?chart=funding-by-govt-290517</p>
+        <p>Social commentator and author Jane Caro, who sent her children to public school, says <a href="http://www.mamamia.com.au/jane-caro-australian-education-funding/" target="_self" title="">the funding situation is all wrong</a>:</p>
+        <p>"Data from the 2015 Productivity Commission report shows private schools get on an average $1.2 million more per year from all sources compared to public schools. That should be reversed.</p>
+        <p>"We can't keep asking some schools and some teachers to fix the problems of inequality, mental health, substance abuse and generational poverty on their own and then blame them when they can't — particularly as we currently ask them to do it on the smell of an oily rag.</p>
+        <p>"Frankly, I can't look at the facilities in some privileged schools and believe they still get millions in taxpayers' money while schools that do the heavy lifting go without."</p>
+        <h3>But hang on, won't "Gonski 2.0" fix all that?</h3>
+        <p>Australia's move towards a "needs-based, sector-blind" funding system has been a long time coming, and now we have new federal legislation that should - in theory - go some way towards addressing the imbalance. </p>
+        <p>But does it?</p>
+        <p>Ms Caro points out that the federal government is now locked in to providing 80 per cent of the School Resource Standard to private schools, and 20 per cent of the SRS to public schools. </p>
+        <p>This means it is now up to the states to shift their funds and ensure that private schools aren't overfunded and public schools underfunded.</p>
+        <p>"Gonski 2.0 is a goldmine for private schools. It is the best special deal they have ever had," says economist <a href="http://www.saveourschools.com.au/funding/gonski-20-entrenches-structural-incoherence-and-inequity-in-school-funding" target="_self" title="">Trevor Cobbold of Save Our Schools</a>.</p>
+        <p>"In contrast, virtually all public schools will remain under-funded even though they enrol over 80 per cent of disadvantaged students across Australia. </p>
+        <p>"Under Gonski 2.0, public schools in NSW will be funded at 91 per cent of their SRS, 86 per cent in Victoria, 92 per cent in Queensland and South Australia, and 87 per cent in the Northern Territory unless there is a dramatic change in State government funding policies."</p>
+        <p>So by sending your child to a private school, you're still backing a system in which non-government schools receive much more federal funding per student than government schools. Is that ok with you?</p>
+        
+        
+        <p>Counter argument 6???</p>
+        
+        <p>It'll be good for their character.</p>
+        <p>A lot of time and resources are devoted to <a href="http://www.education.vic.gov.au/documents/about/department/resiliencelitreview.pdf" target="_self" title="">building resilience</a> in children these days. Are you really doing your kids a favour by putting them in an environment that will hold their hand all the way through school?</p>
+        <p>Non-government schools do have a reputation for expecting excellence, and the argument is that this spurs kids on to achieve more. But what if you want to raise a self-starter?</p>
+        <p>Writer Rebecca Douglas, who went to a Western Sydney government school, believes that doing it a bit tougher than other kids has been good for her.</p>
+        <p>"Public school can foster a hunger and self-reliance private school kids have likely not had to strive for to get ahead," she <a href="/news/2013-07-29/douglas-did-public-school-kids-ever-have-a-chance/4850542" target="_self" title="">writes</a>.</p>
+        
+        
+        
+        <h2>I'm choosing a state school</h2>
+        
+        
+        <p>Counter argument 1</p>
+        
+        <p>Why don't your kids deserve the best (or at least the best you can afford)?</p>
+        <p>A succession of funding decisions by federal governments means that private schools have the ability to provide better technology, newer buildings, bigger swimming pools, and sometimes attract better teachers. </p>
+        <p>For many parents, these differences (visible and perceived) are key to sending their children to private school. </p>
+        <p>"Some of the parents I studied were contemplating private schools with twice the level of resources per student, and more than ten times the spending on capital works (including five times more capital funding from government) than the nearest public secondary school," <a href="https://theconversation.com/school-choice-no-great-love-for-the-private-path-but-parents-follow-the-money-40376" target="_self" title="">says Associate Professor Joel Windle</a>.</p>
+        <p>"This extra funding is reflected in sporting and music programs and state-of-the-art science facilities."</p>
+        <p>Does your child have a particular talent or interest that could be encouraged by better resources? Does your local high school have the best resources available for him or her?</p>
+        <p>How good is the library at your local school? Are the classrooms comfortable and air conditioned?</p>
+        
+        
+        <p>Counter argument 2</p>
+        
+        <p>Access to old boys'/girls' network</p>
+        <p>These days, <a href="http://www.abs.gov.au/ausstats/abs@.nsf/mf/4221.0" target="_self" title="">35 per cent</a> of parents are choosing to send their child to private school. Although this percentage appears to have stagnated, it's still a significant number of people, and overwhelmingly made up of high-income families. </p>
+        <p>Have you thought about what advantages your child could gain from a) being part of a school where achievement is expected b) making connections with others who are likely to become future leaders and c) having a reputable school on their resume as they start their working life?</p>
+        <p>Even if you like the idea of your child getting to mix with people from all walks of life at school - maybe to toughen them up or teach them empathy - you might not like the thought of them missing out on opportunities in the future because of where they went to school.</p>
+        <p>Consider this scenario, <a href="http://www.abc.net.au/news/2013-07-29/douglas-did-public-school-kids-ever-have-a-chance/4850542" target="_self" title="">relayed</a> by public school graduate Rebecca Douglas after a conversation with a couple of lawyer friends:</p>
+        <blockquote>
+            <p>My friend's firm had been inundated by applications and had chosen to filter them by insisting on grades of at least a distinction average (fair enough) and by eliminating all the public school applicants, regardless of merit (very much </p>
+            <p><em>not</em>). Apparently the reasoning was that private school kids would likely have connections that could benefit the firm. My other friend chimed in to say that her employer had taken the same approach.</p>
+        </blockquote>
+        <p>It's not clear how widespread this sort of prejudice is, but given that a third of the population is going to private schools, how certain can you be that your child will not get pushed aside by unconscious bias from a potential boss who didn't go through the public system?</p>
+        
+        
+        <p>Counter argument 3</p>
+        
+        <p>Not every family is the same. </p>
+        <p>What about your family's religious or philosophical beliefs - will they be respected and nurtured at the local public school?<br/> </p>
+        <p>If you are a religious family, the cost of private school might be worth it simply to know that your child is spending their days in an environment that is more likely to reflect your values and give them a deeper understanding of your chosen faith. </p>
+        <p>Or you might believe in the value of a particular educational philosophy, such as Steiner. </p>
+        <p>The <a href="http://www.isq.qld.edu.au/choice-and-diversity" target="_self" title="">independent schools network</a> says their range of schools include:</p>
+        <ul>
+            <li>Non-denominational schools</li>
+            <li>Schools with church or ethnic affiliations. For example, Lutheran, Anglican, Baptist, Jewish and Islamic schools</li>
+            <li>Montessori schools</li>
+            <li>Steiner schools</li>
+            <li>Schools supporting Students With Disability</li>
+            <li>Special Assistance Schools</li>
+            <li>Schools for Indigenous students</li>
+            <li>Schools with programs for gifted and talented students</li>
+            <li>Schools that offer the International Baccalaureate Diploma</li>
+            <li>Schools that cater for international students</li>
+        </ul>
+        
+        
+        <p>Counter argument 4</p>
+        
+        <p>It's all about the teachers and principal</p>
+        <p>It's worth considering that educational philosophy is not the only area in which non-government schools are more independent. What about the ability to have greater control over staffing?</p>
+        <p>Karen Spiller, principal of St Aidan's girls' school in Brisbane, says school teachers and the quality of school leadership are crucial.</p>
+        <p>"Definitely teachers make the difference. The research is absolutely clear," she <a href="http://www.couriermail.com.au/news/queensland/author-david-gillespie-challenges-the-notion-that-paying-big-bucks-for-elite-private-schools-guarantees-a-better-education/news-story/e0f1eedd19f8763ea60129d40a34a7bc" target="_self" title="">told the Courier Mail</a>.</p>
+        <p>"We talk about the difference that a quality teacher can make to a child and you are literally talking about an 18-month difference between a quality teacher and a teacher who is underperforming.</p>
+        <p>"Independent schools have the ability to manage their own site in the way they want to and generally speaking I suspect are able to exert greater control over their staffing.</p>
+        <p>"Recruitment selection of staff is absolutely vital in terms of making sure you have got a professional staff and I do agree with David (Gillespie) on this point. The mentoring and coaching of staff and putting out high expectations and making sure you are engaging in the conversation of teaching and learning on a day-to-day basis, is absolutely vital."</p>
+        
+        
+        <p>Counter argument 5</p>
+        
+        <p>Non-government schools make education cheaper for governments, so if you can afford them, you should fork out.</p>
+        <p>The <a href="http://isca.edu.au//wp-content/uploads/2017/02/ISCA-Snapshot-2016-A4-2pp.pdf" target="_self" title="">average funding per student</a> from all government sources (2013-14) for government schools was $16,180, compared to less than $10,000 for non-government schools.</p>
+        <p>The gap has been narrowing in recent years, but the non-government school sector argues that it is still cheaper for governments to financially support their schools than to educate those children through a state system. </p>
+        <p>Many non-government schools, especially Catholic schools, are low-fee. If you can afford the fees and there's a suitable non-government school in your area, why not send your kids to a private school?</p>
+        
+        
+        <p>Counter argument 6</p>
+        
+        <p>Are you exercising your right to choose? Schooling might seem like just another decision to make, in a world where we are presented with too much choice.</p>
+        <p>But did you know that the right to choose your child's type of education is part of the <a href="http://www.un.org/en/universal-declaration-human-rights/" target="_self" title="">Universal Declaration of Human Rights</a>?</p>
+        <blockquote>
+            <p>(3) Parents have a prior right to choose the kind of education that shall be given to their children.</p>
+        </blockquote>
+        <p>In Australia, not only do we have public education available free to all, but a strong non-government school sector backed up by taxpayer dollars.</p>
+        <p>Under the latest education funding changes, the Commonwealth has promised to provide 80 per cent of the Student Resource Standard; it's now the law. So your local private school is strongly backed by the richest government in the land, while the public school relies on often cash-strapped state governments for 80 per cent of their SRS. </p>
+        <p>Which one looks like a more solid choice?</p>
+        
+        
+        <p>Summary</p>
+        
+        <p>Schooling is what economists call an "experience good". That means you don't know if you've made a good choice until you've actually experienced the school. Often, parents are being asked to choose, or plan for, a school many years in advance.</p>
+        <p>The important thing is to remember there is no perfect choice, but you can use the tools at your disposal to make a good choice: </p>
+        <ul>
+            <li> Go to Open Days</li>
+            <li>It's all about the principal, so meet the principal. David Gillespie recommends asking him or her how they manage the teaching staff. You want the one who says they don't have a magic solution, but they have a plan for incremental improvement and goals for academic performance.</li>
+            <li>If you're into the bigger picture, use the Myschool website. We've never had such a wealth of data available about schooling, yet only about a fifth of parents are using the site.</li>
+            <li> Use your social network. Think about a child similar to your own. How did going through the school help or hinder them?</li>
+            <li>
+                <p>Get a copy of the school newsletter. It will say a lot about the school's priorities.</p>
+            </li>
+        </ul>
 
         <script src="index.js"></script>
-        
     </body>
 </html>

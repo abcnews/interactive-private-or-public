@@ -1,59 +1,85 @@
 const Vue = require('vue');
+const { getCounterArguments, getSummary } = require('./loader');
 
-// Get an array of HTML from matching queries
-function htmlForQuerySelector(query) {
-    return Array.prototype.map.call(
-        document.querySelectorAll(query),
-        n => n.innerHTML
-    );
-}
+// Inject the template
+document.querySelector('#interactive').innerHTML = require('./template');
 
-function getCounterArguments() {
-    return {
-        privateSchool: htmlForQuerySelector('.private-school'),
-        publicSchool: htmlForQuerySelector('.public-school')
-    };
-}
-
-let counterArguments = getCounterArguments();
-
+// The main Vue app
 const app = new Vue({
     el: '#app',
     data: {
         currentChoice: null,
+        counterArguments: getCounterArguments(),
+        summary: getSummary(),
         args: [],
-        canChoose: true
+        canChoose: true,
+        privateVerb: 'choosing',
+        publicVerb: 'choosing',
+        changedMind: '',
+        face: 'smug'
     },
     methods: {
         reset() {
             this.currentChoice = null;
+            this.counterArguments = getCounterArguments();
+            this.summary = getSummary();
             this.args = [];
             this.canChoose = true;
-            counterArguments = getCounterArguments();
+            this.privateVerb = 'choosing';
+            this.publicVerb = 'choosing';
+            this.changedMind = '';
+            this.face = 'smug';
         },
-        updateChoice(schoolType) {
-            this.currentChoice = schoolType;
+        updateChoice(nextChoice) {
+            let heading = '';
+            if (this.currentChoice !== nextChoice) {
+                // Only show a heading if the choice has changed
+                heading = `<h3><span>You chose
+                    ${nextChoice === 'privateSchool'
+                        ? 'Private School'
+                        : 'Public School'}
+                    </span></h3>`;
+            }
 
-            const html = counterArguments[this.currentChoice].shift();
-            const heading =
-                this.currentChoice === 'privateSchool'
-                    ? 'Private School?'
-                    : 'Public School?';
+            this.currentChoice = nextChoice;
+
+            const html = this.counterArguments[this.currentChoice].shift();
 
             this.args.push(
                 `<div class="argument ${this.currentChoice} open">
-                    <h3>${heading}</h3>
+                    ${heading}
                     <div class="content">
                         ${html}
                     </div>
                 </div>`
             );
 
-            if (counterArguments[this.currentChoice].length === 0) {
-                console.log('nope');
-                this.canChoose = false;
+            if (this.currentChoice === 'publicSchool') {
+                this.publicVerb = 'staying with';
+                this.privateVerb = 'changing to';
             } else {
-                console.log('keep going');
+                this.publicVerb = 'changing to';
+                this.privateVerb = 'staying with';
+            }
+
+            switch (this.args.length) {
+                case 0:
+                    break;
+                case 1:
+                    this.face = 'thinking';
+                    this.changedMind = 'Has that changed your mind?';
+                    break;
+                case 2:
+                    this.face = 'startled';
+                    this.changedMind = 'How about now?';
+                    break;
+                default:
+                    this.face = 'alarmed';
+                    this.changedMind = 'Has that changed your mind?';
+            }
+
+            if (this.counterArguments[this.currentChoice].length === 0) {
+                this.canChoose = false;
             }
         }
     }
