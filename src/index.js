@@ -2,7 +2,9 @@ const Vue = require('vue');
 const { getCounterArguments, getSummary } = require('./loader');
 
 // Inject the template
-document.querySelector('#interactive').innerHTML = require('./template');
+document.querySelector(
+    '[data-private-vs-public-school-root]'
+).innerHTML = require('./template');
 
 // The main Vue app
 const app = new Vue({
