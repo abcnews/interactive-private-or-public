@@ -81,17 +81,23 @@ module.exports.getSummary = function() {
     let html = '';
     let el = summary;
     while (
-        typeof el.tagName === 'undefined' ||
-        el.tagName === 'P' ||
-        el.tagName === 'UL'
+        el &&
+        (typeof el.tagName === 'undefined' ||
+            el.tagName === 'P' ||
+            el.tagName === 'UL')
     ) {
+        console.log('el?', el);
+
         if (el.outerHTML && el.innerText !== 'Summary') {
             html += el.outerHTML;
         }
 
-        el = el.nextSibling;
-        if (el && el.previousSibling) {
+        if (el.nextSibling) {
+            el = el.nextSibling;
             el.previousSibling.remove();
+        } else {
+            el.remove();
+            el = null;
         }
     }
 

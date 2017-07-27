@@ -37,7 +37,7 @@ module.exports = `<div id="app" v-cloak>
                     <div class="stick"></div>
                 </div>
                 <div class="face">
-                    <img src="face-alarmed.png" />
+                    <img v-bind:src="faceAlarmed" />
                 </div>
             </div>
         </div>

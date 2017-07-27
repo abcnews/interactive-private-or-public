@@ -28,7 +28,8 @@ domready(() => {
             privateVerb: 'choosing',
             publicVerb: 'choosing',
             changedMind: '',
-            face: faceURL('smug')
+            face: faceURL('smug'),
+            faceAlarmed: faceURL('alarmed')
         },
         methods: {
             reset() {
@@ -41,6 +42,8 @@ domready(() => {
                 this.publicVerb = 'choosing';
                 this.changedMind = '';
                 this.face = faceURL('smug');
+
+                window.scrollTo(0, 0);
             },
             updateChoice(nextChoice) {
                 let heading = '';
