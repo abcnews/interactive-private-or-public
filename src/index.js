@@ -30,7 +30,7 @@ domready(() => {
             publicVerb: 'choosing',
             changedMind: '',
             face: faceURL('smug'),
-            faceAlarmed: faceURL('alarmed')
+            faceSummary: faceURL('thinking')
         },
         methods: {
             reset() {
