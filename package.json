@@ -19,6 +19,7 @@
     },
     "dependencies": {
         "domready": "^1.0.8",
+        "smoothscroll": "^0.3.0",
         "vue": "^2.4.2"
     },
     "browser": {

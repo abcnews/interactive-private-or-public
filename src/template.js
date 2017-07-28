@@ -1,6 +1,6 @@
 module.exports = `<div id="app" v-cloak>
     <div class="arguments">
-        <div v-for="html in args" v-html="html">
+        <div v-for="(html, index) in args" v-html="html" v-bind:data-arg-index="index">
         </div>
     </div>
     <div v-if="canChoose">

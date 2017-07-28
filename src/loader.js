@@ -86,8 +86,6 @@ module.exports.getSummary = function() {
             el.tagName === 'P' ||
             el.tagName === 'UL')
     ) {
-        console.log('el?', el);
-
         if (el.outerHTML && el.innerText !== 'Summary') {
             html += el.outerHTML;
         }
