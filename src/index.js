@@ -99,23 +99,15 @@ domready(() => {
 
                 if (this.counterArguments[this.currentChoice].length === 0) {
                     this.canChoose = false;
-
-                    // Scroll to the summary
-                    setTimeout(() => {
-                        const summaryElement = document.querySelector(
-                            '.summary'
-                        );
-                        smoothscroll(summaryElement);
-                    }, 300);
-                } else {
-                    // Scroll to next argument
-                    setTimeout(() => {
-                        const nextArgumentElement = document.querySelector(
-                            `[data-arg-index="${this.args.length - 1}"]`
-                        );
-                        smoothscroll(nextArgumentElement);
-                    }, 300);
                 }
+
+                // Scroll to next argument
+                setTimeout(() => {
+                    const nextArgumentElement = document.querySelector(
+                        `[data-arg-index="${this.args.length - 1}"]`
+                    );
+                    smoothscroll(nextArgumentElement);
+                }, 200);
             }
         }
     });
