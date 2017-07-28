@@ -50,10 +50,13 @@ domready(() => {
                 let heading = '';
                 if (this.currentChoice !== nextChoice) {
                     // Only show a heading if the choice has changed
-                    heading = `<h3><span>You chose
-                        ${nextChoice === 'privateSchool'
-                            ? 'Private School'
-                            : 'Public School'}
+                    heading = `
+                        <h3><span>
+                            You 
+                            ${!this.currentChoice ? 'chose' : 'changed to'}
+                            ${nextChoice === 'privateSchool'
+                                ? 'Private School'
+                                : 'Public School'}
                         </span></h3>`;
                 }
 
