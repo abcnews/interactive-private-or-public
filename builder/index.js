@@ -151,6 +151,8 @@ Tasks.run = function(args, config) {
 
     let webpack_config = webpackConfig(args, config);
 
+    const build_started_at = new Date();
+
     return new Promise((resolve, reject) => {
         process.on('uncaughtException', err => {
             Log.error(err.stack);
@@ -161,7 +163,9 @@ Tasks.run = function(args, config) {
         if (process.env.NODE_ENV !== 'production') {
             compiler.apply(
                 new Webpack.ProgressPlugin((percent, message) => {
-                    if (percent === 1) {
+                    const time_has_passed =
+                        (new Date() - build_started_at) / 1000 > 3; // 3 seconds
+                    if (percent === 1 && time_has_passed) {
                         let now = new Date();
                         Log.notice(
                             'Latest build ready',
@@ -208,11 +212,6 @@ module.exports = {
             .then(() => {
                 return Tasks.build(args, config).then(() => {
                     if (!args.includes('hot')) return process.exit();
-
-                    if (!config.server_path) {
-                        config.server_path = `builder/server.js`;
-                    }
-
                     return Tasks.run(args, config);
                 });
             })

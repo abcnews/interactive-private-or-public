@@ -1,25 +1,15 @@
 const domready = require('domready');
 
 let render = () => {
-    const app = require('./app');
-    app();
+    require('./app')();
 };
 
+// Do some hot reload magic with errors
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-    const hotRender = render;
-
-    render = () => {
-        try {
-            hotRender();
-        } catch (e) {
-            console.log(e);
-        }
-    };
-
+    render = require('../builder/ah-ah-ah')(render);
     module.hot.accept('./app', () => {
         setTimeout(render);
     });
 }
 
-// App
 domready(render);

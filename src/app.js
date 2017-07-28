@@ -16,9 +16,8 @@ module.exports = () => {
     const rootElement = document.querySelector(
         '[data-private-vs-public-school-root]'
     );
-    if (rootElement.innerHTML === '') {
-        rootElement.innerHTML = require('./template');
-    }
+
+    rootElement.innerHTML = require('./template');
 
     // The main Vue app
     const app = new Vue({
