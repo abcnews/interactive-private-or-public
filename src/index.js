@@ -6,7 +6,7 @@ const element = require('./loader').getRootElement();
 
 let root;
 let render = () => {
-    let App = require('./app');
+    let App = require('./components/app');
     root = Preact.render(<App />, element, root);
 };
 
@@ -17,13 +17,12 @@ if (process.env.NODE_ENV !== 'production' && module.hot) {
         try {
             renderFunction();
         } catch (e) {
-            console.error(e);
             const { Error } = require('./error');
             root = Preact.render(<Error error={e} />, element, root);
         }
     };
 
-    module.hot.accept('./app', () => {
+    module.hot.accept('./components/app', () => {
         setTimeout(render);
     });
 }

@@ -2,11 +2,11 @@
 const Preact = require('preact');
 const smoothscroll = require('smoothscroll');
 
-const { getCounterArguments, getSummary } = require('./loader');
+const { getCounterArguments, getSummary } = require('../loader');
 
-const Face = require('./components/face');
-const Balloon = require('./components/balloon');
-const HTML = require('./components/html');
+const Face = require('./face');
+const Balloon = require('./balloon');
+const HTML = require('./html');
 
 const styles = require('./app.scss');
 
