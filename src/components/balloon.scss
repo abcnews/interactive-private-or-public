@@ -1,0 +1,49 @@
+.choice {
+    width: 50%;
+    float: left;
+    cursor: pointer;
+    text-align: center;
+    font-family: Arial, sans-serif;
+    text-transform: uppercase;
+    padding: 10px;
+
+    .text {
+        color: white;
+        padding: 20px;
+    }
+
+    .stick {
+        background-repeat: no-repeat;
+        background-size: 60px 30px;
+        height: 30px;
+    }
+
+    &.choose-public {
+        .text {
+            background: #137c0d;
+        }
+        .stick {
+            background-image: url('../assets/stick-public.png');
+        }
+    }
+
+    &.choose-private {
+        .text {
+            background: #0d3c87;
+        }
+        .stick {
+            background-image: url('../assets/stick-private.png');
+            background-position: 100% 0;
+        }
+    }
+
+    &.choose-reset {
+        .text {
+            background: #666;
+        }
+        .stick {
+            background-image: url('../assets/stick-reset.png');
+            background-position: 100% 0;
+        }
+    }
+}

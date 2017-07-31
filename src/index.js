@@ -1,12 +1,28 @@
+/** @jsx Preact.h */
+const Preact = require('preact');
 const domready = require('domready');
 
+const element = require('./loader').getRootElement();
+
+let root;
 let render = () => {
-    require('./app')();
+    let App = require('./app');
+    root = Preact.render(<App />, element, root);
 };
 
 // Do some hot reload magic with errors
 if (process.env.NODE_ENV !== 'production' && module.hot) {
-    render = require('../builder/ah-ah-ah')(render);
+    let renderFunction = render;
+    render = () => {
+        try {
+            renderFunction();
+        } catch (e) {
+            console.error(e);
+            const { Error } = require('./error');
+            root = Preact.render(<Error error={e} />, element, root);
+        }
+    };
+
     module.hot.accept('./app', () => {
         setTimeout(render);
     });

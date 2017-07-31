@@ -1,34 +1,18 @@
 // mobile: only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2)
 // tablet: only screen and (max-device-width: 768px)
 
-// Hide Vue until it loads
-[v-cloak] {
-    display: none;
-}
-
-#app * {
-    box-sizing: border-box;
-}
-
-#app {
+.wrapper {
     max-width: 700px;
     margin: 40px auto 60px auto;
+}
+
+.wrapper * {
+    box-sizing: border-box;
 }
 
 .choices {
     overflow: hidden;
     width: 100%;
-}
-
-.face {
-    clear: both;
-
-    img {
-        display: block;
-        width: 80px;
-        margin: auto;
-        border: none;
-    }
 }
 
 .changed-mind {
@@ -37,56 +21,6 @@
     font-size: 20px;
     margin: 20px auto;
     font-family: Arial, sans-serif;
-}
-
-.choice {
-    width: 50%;
-    float: left;
-    cursor: pointer;
-    text-align: center;
-    font-family: Arial, sans-serif;
-    text-transform: uppercase;
-    padding: 10px;
-
-    .text {
-        color: white;
-        padding: 20px;
-    }
-
-    .stick {
-        background-repeat: no-repeat;
-        background-size: 60px 30px;
-        height: 30px;
-    }
-
-    &.choose-public {
-        .text {
-            background: #137c0d;
-        }
-        .stick {
-            background-image: url('./stick-public.png');
-        }
-    }
-
-    &.choose-private {
-        .text {
-            background: #0d3c87;
-        }
-        .stick {
-            background-image: url('./stick-private.png');
-            background-position: 100% 0;
-        }
-    }
-
-    &.choose-reset {
-        .text {
-            background: #666;
-        }
-        .stick {
-            background-image: url('./stick-reset.png');
-            background-position: 100% 0;
-        }
-    }
 }
 
 .arguments {
