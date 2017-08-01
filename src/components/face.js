@@ -1,8 +1,6 @@
 /** @jsx Preact.h */
 const Preact = require('preact');
 
-const ASSET_PATH = require('../loader').getAssetPath();
-
 const styles = require('./face.scss');
 const FACES = {
     alarmed: require('../assets/face-alarmed.png'),
@@ -14,7 +12,7 @@ const FACES = {
 module.exports = props => {
     return (
         <div className={styles.face}>
-            <img src={ASSET_PATH + FACES[props.emotion]} />
+            <img src={FACES[props.emotion]} />
         </div>
     );
 };

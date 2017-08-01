@@ -41,6 +41,10 @@ class App extends Preact.Component {
             publicVerb: 'choosing',
             prompt: ''
         });
+
+        smoothscroll(
+            document.querySelector('[data-private-vs-public-school-root]')
+        );
     }
 
     updateChoice(nextChoice) {

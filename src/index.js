@@ -2,7 +2,7 @@
 const Preact = require('preact');
 const domready = require('domready');
 
-const element = require('./loader').getRootElement();
+const element = document.querySelector('[data-private-vs-public-school-root]');
 
 let root;
 let render = () => {
