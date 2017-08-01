@@ -32,6 +32,9 @@ class App extends Preact.Component {
     }
 
     reset() {
+        this.counterArguments = getCounterArguments();
+        this.summary = getSummary();
+
         this.setState({
             currentChoice: null,
             currentFace: 'smug',
