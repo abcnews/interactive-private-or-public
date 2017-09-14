@@ -1,7 +1,24 @@
-/** @jsx Preact.h */
-const Preact = require('preact');
+const { h, Component } = require('preact');
 
-class HTML extends Preact.Component {
+class HTML extends Component {
+    componentDidMount() {
+        if (!this.wrapper) return;
+        if (!this.props.html) return;
+
+        this.props.html.forEach(node => {
+            this.wrapper.appendChild(node);
+        });
+    }
+
+    componentWillUnmount() {
+        if (!this.wrapper) return;
+        if (!this.props.html) return;
+
+        this.props.html.forEach(node => {
+            this.wrapper.removeChild(node);
+        });
+    }
+
     shouldComponentUpdate() {
         return false;
     }
@@ -9,9 +26,9 @@ class HTML extends Preact.Component {
     render() {
         return (
             <div
-                dangerouslySetInnerHTML={{ __html: this.props.html }}
+                ref={el => (this.wrapper = el)}
                 id={this.props.id}
-                className={this.props.className || ''}
+                className={`u-richtext ${this.props.className || ''}`}
             />
         );
     }

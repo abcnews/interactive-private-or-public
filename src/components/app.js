@@ -1,26 +1,22 @@
-/** @jsx Preact.h */
-const Preact = require('preact');
+const { h, Component } = require('preact');
 const smoothscroll = require('smoothscroll');
 
-const { getCounterArguments, getSummary } = require('../loader');
+const Face = require('./Face');
+const Balloon = require('./Balloon');
+const CounterArgument = require('./CounterArgument');
+const HTML = require('./HTML');
 
-const Face = require('./face');
-const Balloon = require('./balloon');
-const HTML = require('./html');
+const styles = require('./App.scss');
 
-const styles = require('./app.scss');
-
-class App extends Preact.Component {
+class App extends Component {
     constructor(props) {
         super(props);
 
         this.updateChoice = this.updateChoice.bind(this);
         this.reset = this.reset.bind(this);
 
-        this.counterArguments = getCounterArguments();
-        this.summary = getSummary();
-
         this.state = {
+            availableArguments: props.args,
             currentChoice: null,
             currentFace: 'smug',
             counterArguments: [],
@@ -32,12 +28,10 @@ class App extends Preact.Component {
     }
 
     reset() {
-        this.counterArguments = getCounterArguments();
-        this.summary = getSummary();
-
         this.setState({
             currentChoice: null,
             currentFace: 'smug',
+            availableArguments: this.props.args,
             counterArguments: [],
             canChoose: true,
             privateVerb: 'choosing',
@@ -45,47 +39,25 @@ class App extends Preact.Component {
             prompt: ''
         });
 
-        smoothscroll(
-            document.querySelector('[data-private-vs-public-school-root]')
-        );
+        smoothscroll(document.querySelector('p'));
     }
 
     updateChoice(nextChoice) {
-        let {
-            currentChoice,
-            currentFace,
-            prompt,
-            counterArguments,
-            privateVerb,
-            publicVerb,
-            canChoose
-        } = this.state;
+        let { currentChoice, currentFace, prompt, counterArguments, privateVerb, publicVerb, canChoose } = this.state;
 
-        let heading = '';
+        let heading = false;
         if (currentChoice !== nextChoice) {
             // Only show a heading if the choice has changed
-            heading = `
-                <h3><span>
-                    You 
-                    ${!currentChoice ? 'chose' : 'changed to'}
-                    ${nextChoice === 'privateSchool'
-                        ? 'Private School'
-                        : 'Public School'}
-                </span></h3>`;
+            heading = `You ${!currentChoice ? 'chose' : 'changed to'} ${nextChoice === 'privateSchool'
+                ? 'Private School'
+                : 'Public School'}`;
         }
 
-        const html = this.counterArguments[nextChoice].shift();
-
-        counterArguments = counterArguments.concat(
-            `<div class="${styles.argument} ${styles[
-                nextChoice
-            ]} ${styles.open}">
-                ${heading}
-                <div class="${styles.content}">
-                    ${html}
-                </div>
-            </div>`
-        );
+        counterArguments = counterArguments.concat({
+            choice: nextChoice,
+            heading,
+            nodes: this.state.availableArguments.get(nextChoice).first().nodes
+        });
 
         if (nextChoice === 'publicSchool') {
             publicVerb = 'staying with';
@@ -111,64 +83,51 @@ class App extends Preact.Component {
                 prompt = 'Has that changed your mind?';
         }
 
-        if (this.counterArguments[nextChoice].length === 0) {
+        // This argument is the last one?
+        if (this.state.availableArguments.get(nextChoice).count() === 1) {
             canChoose = false;
         }
 
         // Scroll to next argument
         setTimeout(() => {
-            const nextArgumentElement = document.getElementById(
-                `argument-${counterArguments.length - 1}`
-            );
-
-            smoothscroll(nextArgumentElement);
+            smoothscroll(document.getElementById(`argument-${counterArguments.length - 1}`));
         }, 200);
 
-        this.setState({
-            currentChoice: nextChoice,
-            currentFace,
-            prompt,
-            privateVerb,
-            publicVerb,
-            counterArguments,
-            canChoose
+        this.setState(state => {
+            return {
+                currentChoice: nextChoice,
+                currentFace,
+                prompt,
+                privateVerb,
+                publicVerb,
+                availableArguments: state.availableArguments.set(
+                    nextChoice,
+                    state.availableArguments.get(nextChoice).shift()
+                ),
+                counterArguments,
+                canChoose
+            };
         });
     }
 
     render() {
-        const {
-            counterArguments,
-            canChoose,
-            prompt,
-            currentFace,
-            privateVerb,
-            publicVerb
-        } = this.state;
+        const { counterArguments, canChoose, prompt, currentFace, privateVerb, publicVerb } = this.state;
 
         return (
             <div className={styles.wrapper}>
                 <div className={styles.arguments}>
-                    {counterArguments.map((html, index) => {
-                        return (
-                            <HTML
-                                html={html}
-                                key={html}
-                                id={`argument-${index}`}
-                            />
-                        );
+                    {counterArguments.map((arg, index) => {
+                        return <CounterArgument arg={arg} key={index} index={index} />;
                     })}
                 </div>
 
-                {canChoose &&
+                {canChoose && (
                     <div>
                         <div className={styles.choices}>
-                            <div className={styles.changedMind}>
-                                {prompt}
-                            </div>
+                            <div className={styles.changedMind}>{prompt}</div>
                             <Balloon
                                 privateSchool
-                                onClick={e =>
-                                    this.updateChoice('privateSchool')}
+                                onClick={e => this.updateChoice('privateSchool')}
                                 text={`I'm ${privateVerb} private school`}
                             />
                             <Balloon
@@ -178,20 +137,19 @@ class App extends Preact.Component {
                             />
                         </div>
                         <Face emotion={currentFace} />
-                    </div>}
+                    </div>
+                )}
 
-                {!canChoose &&
+                {!canChoose && (
                     <div className={styles.summary}>
-                        <HTML html={this.summary} />
+                        <HTML html={this.props.summary} />
 
                         <div className={styles.choices}>
-                            <Balloon
-                                onClick={this.reset}
-                                text="I want to start again"
-                            />
+                            <Balloon onClick={this.reset} text="I want to start again" />
                             <Face emotion="alarmed" />
                         </div>
-                    </div>}
+                    </div>
+                )}
             </div>
         );
     }

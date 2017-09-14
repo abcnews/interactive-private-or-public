@@ -1,13 +1,7 @@
-# Private or Public Schools?
+# interactive-private-or-public
 
-How can parents make the impossible choice between private schooling and public schooling.
-
-
-## Thoughts
-
-
-
+A project generated from [aunty](https://github.com/abcnews/aunty)'s `preact-app` template.
 
 ## Authors
 
-- Nathan Hoad ([hoad.nathan@abc.net.au](mailto:hoad.nathan@abc.net.au))
+- Nathan Hoad ([nathan@nathanhoad.net](mailto:nathan@nathanhoad.net))

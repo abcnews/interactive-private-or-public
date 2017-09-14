@@ -1,30 +1,40 @@
-/** @jsx Preact.h */
-const Preact = require('preact');
-const domready = require('domready');
+const { h, render } = require('preact');
+const { getArguments, getSummary } = require('./loader');
 
-const element = document.querySelector('[data-private-vs-public-school-root]');
+const root = document.querySelector('[data-interactive-private-or-public-root]');
 
-let root;
-let render = () => {
-    let App = require('./components/app');
-    root = Preact.render(<App />, element, root);
+function init() {
+    mount(getArguments(), getSummary());
+}
+
+let mount = (args, summary) => {
+    const App = require('./components/App');
+    render(<App args={args} summary={summary} />, root, root.firstChild);
 };
 
-// Do some hot reload magic with errors
-if (process.env.NODE_ENV !== 'production' && module.hot) {
-    let renderFunction = render;
-    render = () => {
+if (module.hot) {
+    const mountFunction = mount;
+    mount = (args, summary) => {
         try {
-            renderFunction();
-        } catch (e) {
-            const { Error } = require('./error');
-            root = Preact.render(<Error error={e} />, element, root);
+            mountFunction(args, summary);
+        } catch (error) {
+            const ErrorBox = require('./components/ErrorBox');
+            render(<ErrorBox error={error} />, root, root.firstChild);
         }
     };
 
-    module.hot.accept('./components/app', () => {
-        setTimeout(render);
+    module.hot.accept('./components/App', () => {
+        setTimeout(init);
     });
 }
 
-domready(render);
+if (process.env.NODE_ENV === 'development') {
+    require('preact/devtools');
+    console.debug(`[interactive-private-or-public] public path: ${__webpack_public_path__}`);
+}
+
+if (window.__ODYSSEY__) {
+    init();
+} else {
+    window.addEventListener('odyssey:api', init);
+}

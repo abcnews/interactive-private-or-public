@@ -1,7 +1,6 @@
-/** @jsx Preact.h */
-const Preact = require('preact');
+const { h } = require('preact');
 
-const styles = require('./balloon.scss');
+const styles = require('./Balloon.scss');
 
 module.exports = props => {
     let type;
@@ -15,9 +14,7 @@ module.exports = props => {
 
     return (
         <div onClick={props.onClick} className={styles.choice + ' ' + type}>
-            <div className={styles.text}>
-                {props.text}
-            </div>
+            <div className={styles.text}>{props.text}</div>
             <div className={styles.stick} />
         </div>
     );

@@ -23,7 +23,7 @@
             background: #137c0d;
         }
         .stick {
-            background-image: url('../assets/stick-public.png');
+            background-image: url('./stick-public.png');
         }
     }
 
@@ -32,7 +32,7 @@
             background: #0d3c87;
         }
         .stick {
-            background-image: url('../assets/stick-private.png');
+            background-image: url('./stick-private.png');
             background-position: 100% 0;
         }
     }
@@ -42,7 +42,7 @@
             background: #666;
         }
         .stick {
-            background-image: url('../assets/stick-reset.png');
+            background-image: url('./stick-reset.png');
             background-position: 100% 0;
         }
     }

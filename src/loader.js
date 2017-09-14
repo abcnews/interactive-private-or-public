@@ -1,104 +1,58 @@
-// Find the content
-function querySelectorToArray(query) {
-    return Array.prototype.slice.call(document.querySelectorAll(query));
-}
+const Immutable = require('immutable');
 
-let ORIGINAL_COUNTER_ARGUMENTS = null;
-let ORIGINAL_SUMMARY = null;
+function extractPoints(section) {
+    let points = [];
+    let nodes = [];
 
-module.exports.getCounterArguments = function() {
-    if (ORIGINAL_COUNTER_ARGUMENTS) {
-        return {
-            privateSchool: [].concat(ORIGINAL_COUNTER_ARGUMENTS.privateSchool),
-            publicSchool: [].concat(ORIGINAL_COUNTER_ARGUMENTS.publicSchool)
-        };
-    }
-
-    let _counterArguments = {
-        privateSchool: [],
-        publicSchool: []
-    };
-
-    // Find the headings for private and public
-    const headings = querySelectorToArray('h2').filter(
-        el => el.innerText.indexOf('school') >= 0
-    );
-
-    // Jump over the content and pull out the counter arguments
-    headings.forEach(heading => {
-        const type =
-            heading.innerText.indexOf('private') >= 0
-                ? 'privateSchool'
-                : 'publicSchool';
-
-        let index = 0;
-
-        let el = heading.nextSibling;
-        while (
-            el.tagName !== 'H2' &&
-            el !== null &&
-            el.innerText !== 'Summary'
-        ) {
-            const newCounterFound =
-                el.innerText &&
-                el.innerText.toLowerCase().indexOf('counter argument') >= 0;
-
-            if (newCounterFound) {
-                index++;
-            } else if (el.outerHTML) {
-                _counterArguments[type][index] =
-                    _counterArguments[type][index] || '';
-                _counterArguments[type][index] += el.outerHTML;
+    section.betweenNodes.forEach(node => {
+        if (node.innerText && node.innerText.toLowerCase().indexOf('counter argument') === 0) {
+            if (nodes.length === 1 && nodes[0].tagName === 'H2') {
+                // Just a single H2
+                nodes = [];
+            } else {
+                points.push({ nodes });
+                nodes = [];
             }
-
-            el = el.nextSibling;
-            if (el && el.previousSibling) {
-                el.previousSibling.remove();
-            }
+        } else if (node.tagName) {
+            nodes.push(node);
         }
 
-        heading.remove();
-
-        _counterArguments[type] = _counterArguments[type].filter(a => a);
+        node.parentElement.removeChild(node);
     });
 
-    ORIGINAL_COUNTER_ARGUMENTS = {
-        privateSchool: [].concat(_counterArguments.privateSchool),
-        publicSchool: [].concat(_counterArguments.publicSchool)
-    };
+    return Immutable.List(points);
+}
 
-    return _counterArguments;
-};
+let args;
+function getArguments() {
+    if (!args) {
+        args = Immutable.Map();
+        args = args.set(
+            'privateSchool',
+            extractPoints(window.__ODYSSEY__.utils.anchors.getSections('privateschool')[0])
+        );
+        args = args.set('publicSchool', extractPoints(window.__ODYSSEY__.utils.anchors.getSections('stateschool')[0]));
+    }
+    return args;
+}
 
-module.exports.getSummary = function() {
-    if (ORIGINAL_SUMMARY) return ORIGINAL_SUMMARY;
-
-    let summary = querySelectorToArray('p').find(
-        p => p.innerText === 'Summary'
-    );
-
-    let html = '';
-    let el = summary;
-    while (
-        el &&
-        (typeof el.tagName === 'undefined' ||
-            el.tagName === 'P' ||
-            el.tagName === 'UL')
-    ) {
-        if (el.outerHTML && el.innerText !== 'Summary') {
-            html += el.outerHTML;
-        }
-
-        if (el.nextSibling) {
-            el = el.nextSibling;
-            el.previousSibling.remove();
-        } else {
-            el.remove();
-            el = null;
-        }
+let summary;
+function getSummary() {
+    if (!summary) {
+        summary = window.__ODYSSEY__.utils.anchors.getSections('summary')[0];
+        summary = summary.betweenNodes
+            .map(node => {
+                node.parentElement.removeChild(node);
+                if (node.innerText && node.innerText.toLowerCase().indexOf('summary') === 0) {
+                    return null;
+                } else {
+                    return node;
+                }
+            })
+            .filter(n => n);
     }
 
-    ORIGINAL_SUMMARY = '' + html;
+    return summary;
+}
 
-    return html;
-};
+module.exports = { getArguments, getSummary };

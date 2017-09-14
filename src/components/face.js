@@ -1,12 +1,11 @@
-/** @jsx Preact.h */
-const Preact = require('preact');
+const { h } = require('preact');
 
-const styles = require('./face.scss');
+const styles = require('./Face.scss');
 const FACES = {
-    alarmed: require('../assets/face-alarmed.png'),
-    smug: require('../assets/face-smug.png'),
-    startled: require('../assets/face-startled.png'),
-    thinking: require('../assets/face-thinking.png')
+    alarmed: require('./face-alarmed.png'),
+    smug: require('./face-smug.png'),
+    startled: require('./face-startled.png'),
+    thinking: require('./face-thinking.png')
 };
 
 module.exports = props => {
