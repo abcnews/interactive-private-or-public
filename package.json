@@ -1,24 +1,24 @@
 {
-  "name": "interactive-private-or-public",
-  "version": "1.0.0",
-  "description": "A project generated from aunty's preact-app template.",
-  "license": "MIT",
-  "private": true,
-  "contributors": [
-    "Nathan Hoad <nathan@nathanhoad.net>"
-  ],
-  "aunty": "preact-app",
-  "scripts": {
-    "start": "aunty serve"
-  },
-  "devDependencies": {
-    "@abcnews/aunty": "5.1.x"
-  },
-  "dependencies": {
-    "es6-promise": "^4.1.1",
-    "immutable": "^3.8.1",
-    "preact": "^8.2.5",
-    "preact-compat": "^3.17.0",
-    "smoothscroll": "^0.3.0"
-  }
+    "name": "interactive-private-or-public",
+    "version": "1.0.0",
+    "description": "A project generated from aunty's preact-app template.",
+    "license": "MIT",
+    "private": true,
+    "contributors": [
+        "Nathan Hoad <nathan@nathanhoad.net>"
+    ],
+    "aunty": "preact-app",
+    "scripts": {
+        "start": "aunty serve"
+    },
+    "devDependencies": {
+        "@abcnews/aunty": "^7.6.1"
+    },
+    "dependencies": {
+        "es6-promise": "^4.1.1",
+        "immutable": "^3.8.1",
+        "preact": "^8.2.5",
+        "preact-compat": "^3.17.0",
+        "smoothscroll": "^0.3.0"
+    }
 }

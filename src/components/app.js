@@ -9,17 +9,17 @@ const styles = require('./App.scss');
 
 const ICONS = {
     private: [
-        require('./icons/Backpack.png'),
-        require('./icons/Window.png'),
-        require('./icons/Toilet.png'),
-        require('./icons/NoVacancy.png')
+        { src: require('./icons/Backpack.png') },
+        { src: require('./icons/Window.png') },
+        { src: require('./icons/Toilet.png') },
+        { src: require('./icons/NoVacancy.png') }
     ],
     privateIndex: 0,
     public: [
-        require('./icons/BuildCharacter.png'),
-        require('./icons/People.png'),
-        require('./icons/Plane.png'),
-        require('./icons/LeftBehind.png')
+        { src: require('./icons/BuildCharacter.png') },
+        { src: require('./icons/People.png') },
+        { src: require('./icons/Plane.png') },
+        { src: require('./icons/LeftBehind.png') }
     ],
     publicIndex: 0,
 
@@ -50,6 +50,15 @@ class App extends Component {
             publicVerb: 'choosing',
             prompt: ''
         };
+
+        // Preload the images
+        ICONS.private.concat(ICONS.public).forEach(icon => {
+            const img = document.createElement('img');
+            img.src = icon.src;
+            img.onload = e => {
+                icon.width = img.width / 2;
+            };
+        });
     }
 
     reset() {
@@ -63,7 +72,7 @@ class App extends Component {
             prompt: ''
         });
 
-        smoothscroll(document.querySelector('p'));
+        smoothscroll(document.querySelector('h2').previousElementSibling);
     }
 
     updateChoice(nextChoice) {
@@ -129,6 +138,8 @@ class App extends Component {
 
     render() {
         const { counterArguments, canChoose, prompt, privateVerb, publicVerb } = this.state;
+
+        // TODO render invisible icon images to preload them
 
         return (
             <div className={styles.wrapper}>

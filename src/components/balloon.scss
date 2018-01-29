@@ -12,13 +12,8 @@
 
     .text {
         color: white;
-        padding: 20px;
-    }
-
-    .stick {
-        background-repeat: no-repeat;
-        background-size: 60px 30px;
-        height: 30px;
+        padding: 15px 10px;
+        letter-spacing: 1.56px;
     }
 
     &.choose-public {
@@ -43,7 +38,7 @@
 @media only screen and (max-width: 667px) {
     .choice {
         .text {
-            font-size: 14px;
+            font-size: 12px;
         }
     }
 }
