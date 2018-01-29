@@ -15,7 +15,6 @@ module.exports = props => {
     return (
         <div onClick={props.onClick} className={styles.choice + ' ' + type}>
             <div className={styles.text}>{props.text}</div>
-            <div className={styles.stick} />
         </div>
     );
 };

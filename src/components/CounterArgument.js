@@ -13,6 +13,9 @@ class CounterArgument extends Component {
 
         return (
             <div id={`argument-${index}`} className={`${styles.argument} ${styles[arg.choice]} ${styles.open}`}>
+                <div className={styles.icon}>
+                    <img src={arg.icon} />
+                </div>
                 {arg.heading && (
                     <h3>
                         <span>{arg.heading}</span>

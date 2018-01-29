@@ -1,3 +1,5 @@
+@import './_vars.scss';
+
 // mobile: only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2)
 // tablet: only screen and (max-device-width: 768px)
 
@@ -17,22 +19,9 @@
 
 .changed-mind {
     text-align: center;
-    color: #666;
-    font-size: 20px;
-    margin: 20px auto;
-    font-family: Arial, sans-serif;
-}
-
-.arguments {
-    font-family: Arial, sans-serif;
-}
-
-@media only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) {
-    .arguments {
-        padding: 5px;
-    }
-}
-
-.summary {
-    font-family: Arial, sans-serif;
+    color: #eee;
+    font-size: 16px;
+    margin: 10px auto 5px;
+    font-family: $sans;
+    text-transform: uppercase;
 }

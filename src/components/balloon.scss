@@ -1,11 +1,14 @@
+@import './_vars.scss';
+
 .choice {
     width: 50%;
     float: left;
     cursor: pointer;
     text-align: center;
-    font-family: Arial, sans-serif;
+    font-family: $sans;
     text-transform: uppercase;
-    padding: 10px;
+    padding: 5px;
+    font-size: 15px;
 
     .text {
         color: white;
@@ -20,30 +23,27 @@
 
     &.choose-public {
         .text {
-            background: #137c0d;
-        }
-        .stick {
-            background-image: url('./stick-public.png');
+            background: $publicButton;
         }
     }
 
     &.choose-private {
         .text {
-            background: #0d3c87;
-        }
-        .stick {
-            background-image: url('./stick-private.png');
-            background-position: 100% 0;
+            background: $privateButton;
         }
     }
 
     &.choose-reset {
         .text {
-            background: #666;
+            background: #555;
         }
-        .stick {
-            background-image: url('./stick-reset.png');
-            background-position: 100% 0;
+    }
+}
+
+@media only screen and (max-width: 667px) {
+    .choice {
+        .text {
+            font-size: 14px;
         }
     }
 }

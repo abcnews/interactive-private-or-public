@@ -1,12 +1,38 @@
 const { h, Component } = require('preact');
 const smoothscroll = require('smoothscroll');
 
-const Face = require('./Face');
 const Balloon = require('./Balloon');
 const CounterArgument = require('./CounterArgument');
 const HTML = require('./HTML');
 
 const styles = require('./App.scss');
+
+const ICONS = {
+    private: [
+        require('./icons/Backpack.png'),
+        require('./icons/Window.png'),
+        require('./icons/Toilet.png'),
+        require('./icons/NoVacancy.png')
+    ],
+    privateIndex: 0,
+    public: [
+        require('./icons/BuildCharacter.png'),
+        require('./icons/People.png'),
+        require('./icons/Plane.png'),
+        require('./icons/LeftBehind.png')
+    ],
+    publicIndex: 0,
+
+    nextImage(type) {
+        if (type === 'privateSchool') {
+            ICONS.privateIndex = (ICONS.privateIndex + 1) % ICONS.private.length;
+            return ICONS.private[ICONS.privateIndex];
+        } else if (type === 'publicSchool') {
+            ICONS.publicIndex = (ICONS.publicIndex + 1) % ICONS.public.length;
+            return ICONS.public[ICONS.publicIndex];
+        }
+    }
+};
 
 class App extends Component {
     constructor(props) {
@@ -18,7 +44,6 @@ class App extends Component {
         this.state = {
             availableArguments: props.args,
             currentChoice: null,
-            currentFace: 'smug',
             counterArguments: [],
             canChoose: true,
             privateVerb: 'choosing',
@@ -30,7 +55,6 @@ class App extends Component {
     reset() {
         this.setState({
             currentChoice: null,
-            currentFace: 'smug',
             availableArguments: this.props.args,
             counterArguments: [],
             canChoose: true,
@@ -43,17 +67,14 @@ class App extends Component {
     }
 
     updateChoice(nextChoice) {
-        let { currentChoice, currentFace, prompt, counterArguments, privateVerb, publicVerb, canChoose } = this.state;
+        let { currentChoice, prompt, counterArguments, privateVerb, publicVerb, canChoose } = this.state;
 
-        let heading = false;
-        if (currentChoice !== nextChoice) {
-            // Only show a heading if the choice has changed
-            heading = `You ${!currentChoice ? 'chose' : 'changed to'} ${nextChoice === 'privateSchool'
-                ? 'Private School'
-                : 'Public School'}`;
-        }
+        let heading = `You ${!currentChoice || currentChoice === nextChoice ? 'chose' : 'changed to'} ${
+            nextChoice === 'privateSchool' ? 'Private School' : 'Public School'
+        }`;
 
         counterArguments = counterArguments.concat({
+            icon: ICONS.nextImage(nextChoice),
             choice: nextChoice,
             heading,
             nodes: this.state.availableArguments.get(nextChoice).first().nodes
@@ -71,15 +92,12 @@ class App extends Component {
             case 0:
                 break;
             case 1:
-                currentFace = 'thinking';
                 prompt = 'Has that changed your mind?';
                 break;
             case 2:
-                currentFace = 'startled';
                 prompt = 'How about now?';
                 break;
             default:
-                currentFace = 'alarmed';
                 prompt = 'Has that changed your mind?';
         }
 
@@ -96,7 +114,6 @@ class App extends Component {
         this.setState(state => {
             return {
                 currentChoice: nextChoice,
-                currentFace,
                 prompt,
                 privateVerb,
                 publicVerb,
@@ -111,7 +128,7 @@ class App extends Component {
     }
 
     render() {
-        const { counterArguments, canChoose, prompt, currentFace, privateVerb, publicVerb } = this.state;
+        const { counterArguments, canChoose, prompt, privateVerb, publicVerb } = this.state;
 
         return (
             <div className={styles.wrapper}>
@@ -136,7 +153,6 @@ class App extends Component {
                                 text={`I'm ${publicVerb} public school`}
                             />
                         </div>
-                        <Face emotion={currentFace} />
                     </div>
                 )}
 
@@ -146,7 +162,6 @@ class App extends Component {
 
                         <div className={styles.choices}>
                             <Balloon onClick={this.reset} text="I want to start again" />
-                            <Face emotion="alarmed" />
                         </div>
                     </div>
                 )}

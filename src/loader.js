@@ -5,14 +5,14 @@ function extractPoints(section) {
     let nodes = [];
 
     section.betweenNodes.forEach(node => {
-        if (node.innerText && node.innerText.toLowerCase().indexOf('counter argument') === 0) {
-            if (nodes.length === 1 && nodes[0].tagName === 'H2') {
-                // Just a single H2
-                nodes = [];
-            } else {
-                points.push({ nodes });
-                nodes = [];
+        if (node.tagName && node.tagName === 'A' && ['private', 'public'].indexOf(node.getAttribute('name')) > -1) {
+            if (nodes.length > 1) {
+                points.push({
+                    type: node.getAttribute('name'),
+                    nodes
+                });
             }
+            nodes = [];
         } else if (node.tagName) {
             nodes.push(node);
         }
@@ -26,12 +26,11 @@ function extractPoints(section) {
 let args;
 function getArguments() {
     if (!args) {
+        const allArguments = extractPoints(window.__ODYSSEY__.utils.anchors.getSections('arguments')[0]);
+
         args = Immutable.Map();
-        args = args.set(
-            'privateSchool',
-            extractPoints(window.__ODYSSEY__.utils.anchors.getSections('privateschool')[0])
-        );
-        args = args.set('publicSchool', extractPoints(window.__ODYSSEY__.utils.anchors.getSections('stateschool')[0]));
+        args = args.set('privateSchool', allArguments.filter(a => a.type === 'private'));
+        args = args.set('publicSchool', allArguments.filter(a => a.type === 'public'));
     }
     return args;
 }
