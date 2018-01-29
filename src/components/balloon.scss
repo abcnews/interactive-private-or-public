@@ -1,8 +1,8 @@
 @import './_vars.scss';
 
 .choice {
-    width: 50%;
-    float: left;
+    width: 48%;
+    display: inline-block;
     cursor: pointer;
     text-align: center;
     font-family: $sans;
@@ -10,10 +10,18 @@
     padding: 5px;
     font-size: 15px;
 
+    margin-right: 1%;
+
+    &:last-of-type {
+        margin-right: 0;
+        margin-left: 1%;
+    }
+
     .text {
         color: white;
         padding: 15px 10px;
         letter-spacing: 1.56px;
+        font-size: 14px;
     }
 
     &.choose-public {

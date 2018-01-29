@@ -1,3 +1,9 @@
+:global {
+    .Header-content h1 small {
+        color: #fcb36a !important;
+    }
+}
+
 @import './_vars.scss';
 
 // mobile: only screen and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2)
@@ -6,6 +12,8 @@
 .wrapper {
     max-width: 700px;
     margin: 40px auto 60px auto;
+    min-height: 60vh;
+    padding-bottom: 20vh;
 }
 
 .wrapper * {
@@ -15,6 +23,7 @@
 .choices {
     overflow: hidden;
     width: 100%;
+    text-align: center;
 }
 
 .changed-mind {

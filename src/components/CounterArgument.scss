@@ -3,6 +3,10 @@
 .argument {
     margin-bottom: 40px;
 
+    &:last-of-type {
+        margin-bottom: 15px;
+    }
+
     h2,
     p,
     h3,
@@ -14,6 +18,10 @@
         display: block;
         margin: 10px auto;
         text-align: center;
+
+        img {
+            display: inline-block;
+        }
     }
 
     h3 {
@@ -35,6 +43,7 @@
                 width: 7.5rem;
                 height: 0.125rem;
                 background-color: hsla(0, 0%, 70%, 0.7);
+                opacity: 0.5;
             }
         }
     }

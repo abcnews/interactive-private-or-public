@@ -57,6 +57,7 @@ class App extends Component {
             img.src = icon.src;
             img.onload = e => {
                 icon.width = img.width / 2;
+                icon.height = img.height / 2;
             };
         });
     }
@@ -139,8 +140,6 @@ class App extends Component {
     render() {
         const { counterArguments, canChoose, prompt, privateVerb, publicVerb } = this.state;
 
-        // TODO render invisible icon images to preload them
-
         return (
             <div className={styles.wrapper}>
                 <div className={styles.arguments}>
@@ -150,20 +149,18 @@ class App extends Component {
                 </div>
 
                 {canChoose && (
-                    <div>
-                        <div className={styles.choices}>
-                            <div className={styles.changedMind}>{prompt}</div>
-                            <Balloon
-                                privateSchool
-                                onClick={e => this.updateChoice('privateSchool')}
-                                text={`I'm ${privateVerb} private school`}
-                            />
-                            <Balloon
-                                publicSchool
-                                onClick={e => this.updateChoice('publicSchool')}
-                                text={`I'm ${publicVerb} public school`}
-                            />
-                        </div>
+                    <div className={styles.choices}>
+                        <div className={styles.changedMind}>{prompt}</div>
+                        <Balloon
+                            privateSchool
+                            onClick={e => this.updateChoice('privateSchool')}
+                            text={`I'm ${privateVerb} private school`}
+                        />
+                        <Balloon
+                            publicSchool
+                            onClick={e => this.updateChoice('publicSchool')}
+                            text={`I'm ${publicVerb} public school`}
+                        />
                     </div>
                 )}
 
