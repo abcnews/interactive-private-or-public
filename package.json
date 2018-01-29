@@ -1,7 +1,7 @@
 {
     "name": "interactive-private-or-public",
     "version": "1.0.0",
-    "description": "A project generated from aunty's preact-app template.",
+    "description": "Find out if you should send your kid to a private school or a public school.",
     "license": "MIT",
     "private": true,
     "contributors": [
