@@ -1,26 +1,26 @@
 {
-  "name": "interactive-private-or-public",
-  "version": "1.0.0",
-  "description": "Find out if you should send your kid to a private school or a public school.",
-  "license": "MIT",
-  "private": true,
-  "contributors": [
-    "Nathan Hoad <nathan@nathanhoad.net>",
-    "Colin Gourlay <gourlay.colin@abc.net.au>"
-  ],
-  "aunty": "react",
-  "scripts": {
-    "start": "aunty serve"
-  },
-  "devDependencies": {
-    "@abcnews/aunty": "^13.2.2"
-  },
-  "dependencies": {
-    "@abcnews/env-utils": "^3.1.0",
-    "@abcnews/mount-utils": "^2.0.0",
-    "immutable": "^3.8.1",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "smoothscroll": "^0.3.0"
-  }
+	"name": "interactive-private-or-public",
+	"version": "2.0.0",
+	"description": "Find out if you should send your kid to a private school or a public school.",
+	"license": "MIT",
+	"private": true,
+	"contributors": [
+		"Nathan Hoad <nathan@nathanhoad.net>",
+		"Colin Gourlay <gourlay.colin@abc.net.au>"
+	],
+	"aunty": "react",
+	"scripts": {
+		"start": "aunty serve"
+	},
+	"devDependencies": {
+		"@abcnews/aunty": "^13.2.2"
+	},
+	"dependencies": {
+		"@abcnews/env-utils": "^3.1.0",
+		"@abcnews/mount-utils": "^2.0.0",
+		"immutable": "^3.8.1",
+		"react": "^17.0.2",
+		"react-dom": "^17.0.2",
+		"smoothscroll": "^0.3.0"
+	}
 }
