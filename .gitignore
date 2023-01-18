@@ -2,9 +2,8 @@
 /node_modules
 
 # builds
-/build
+/.aunty
 
 # misc
 .DS_Store
 npm-debug.log
-artifacts

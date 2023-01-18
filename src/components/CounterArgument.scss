@@ -1,102 +1,102 @@
 @import './_vars.scss';
 
 .argument {
-    margin-bottom: 40px;
+  margin-bottom: 40px;
 
-    &:last-of-type {
-        margin-bottom: 15px;
+  &:last-of-type {
+    margin-bottom: 15px;
+  }
+
+  h2,
+  p,
+  h3,
+  * {
+    color: #f9f9f9 !important;
+  }
+
+  .icon {
+    display: block;
+    margin: 10px auto;
+    text-align: center;
+
+    img {
+      display: inline-block;
     }
+  }
 
-    h2,
-    p,
-    h3,
-    * {
-        color: #f9f9f9;
-    }
+  h3 {
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+    line-height: 20px;
+    text-transform: uppercase;
+    font-family: $sans;
+    letter-spacing: 1.56px;
+  }
 
-    .icon {
+  .content {
+    h2 {
+      &::before {
+        content: '';
         display: block;
-        margin: 10px auto;
-        text-align: center;
-
-        img {
-            display: inline-block;
-        }
+        margin: 0.5rem auto 1rem;
+        width: 7.5rem;
+        height: 0.125rem;
+        background-color: hsla(0, 0%, 70%, 0.7);
+        opacity: 0.5;
+      }
     }
+  }
 
-    h3 {
-        margin: 0;
-        padding: 0;
-        font-size: 14px;
-        line-height: 20px;
-        text-transform: uppercase;
-        font-family: $sans;
-        letter-spacing: 1.56px;
-    }
-
-    .content {
-        h2 {
-            &::before {
-                content: '';
-                display: block;
-                margin: 0.5rem auto 1rem;
-                width: 7.5rem;
-                height: 0.125rem;
-                background-color: hsla(0, 0%, 70%, 0.7);
-                opacity: 0.5;
-            }
-        }
-    }
-
-    p {
-        margin: 0 0 20px 0;
-        padding: 0;
-    }
+  p {
+    margin: 0 0 20px 0;
+    padding: 0;
+  }
 }
 
 .privateSchool {
-    h3 {
-        text-align: center;
-        color: $privateColour !important;
-    }
+  h3 {
+    text-align: center;
+    color: $privateColour !important;
+  }
 
-    .content {
-        h2 {
-            &::before {
-                background-color: $privateColour;
-            }
-        }
+  .content {
+    h2 {
+      &::before {
+        background-color: $privateColour;
+      }
     }
+  }
 }
 
 .publicSchool {
-    h3 {
-        text-align: center;
-        color: $publicColour !important;
-    }
+  h3 {
+    text-align: center;
+    color: $publicColour !important;
+  }
 
-    .content {
-        h2 {
-            &::before {
-                background-color: $publicColour;
-            }
-        }
+  .content {
+    h2 {
+      &::before {
+        background-color: $publicColour;
+      }
     }
+  }
 }
 
 .open {
-    overflow: hidden;
+  overflow: hidden;
 
-    animation-name: open;
-    animation-duration: 0.5s;
-    animation-timing-function: ease;
+  animation-name: open;
+  animation-duration: 0.5s;
+  animation-timing-function: ease;
 }
 
 @keyframes open {
-    0% {
-        max-height: 0;
-    }
-    100% {
-        max-height: 1000px;
-    }
+  0% {
+    max-height: 0;
+  }
+  100% {
+    max-height: 1000px;
+  }
 }

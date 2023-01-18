@@ -1,20 +1,20 @@
-const { h } = require('preact');
+import React from 'react';
+import styles from './Balloon.scss';
 
-const styles = require('./Balloon.scss');
+export default props => {
+  let type;
 
-module.exports = props => {
-    let type;
-    if (props.privateSchool) {
-        type = styles.choosePrivate;
-    } else if (props.publicSchool) {
-        type = styles.choosePublic;
-    } else {
-        type = styles.chooseReset;
-    }
+  if (props.privateSchool) {
+    type = styles.choosePrivate;
+  } else if (props.publicSchool) {
+    type = styles.choosePublic;
+  } else {
+    type = styles.chooseReset;
+  }
 
-    return (
-        <div onClick={props.onClick} className={styles.choice + ' ' + type}>
-            <div className={styles.text}>{props.text}</div>
-        </div>
-    );
+  return (
+    <div onClick={props.onClick} className={styles.choice + ' ' + type}>
+      <div className={styles.text}>{props.text}</div>
+    </div>
+  );
 };

@@ -1,52 +1,52 @@
 @import './_vars.scss';
 
 .choice {
-    width: 48%;
-    display: inline-block;
-    cursor: pointer;
-    text-align: center;
-    font-family: $sans;
-    text-transform: uppercase;
-    padding: 5px;
-    font-size: 15px;
+  width: 48%;
+  display: inline-block;
+  cursor: pointer;
+  text-align: center;
+  font-family: $sans;
+  text-transform: uppercase;
+  padding: 5px;
+  font-size: 15px;
 
-    margin-right: 1%;
+  margin-right: 1%;
 
-    &:last-of-type {
-        margin-right: 0;
-        margin-left: 1%;
-    }
+  &:last-of-type {
+    margin-right: 0;
+    margin-left: 1%;
+  }
 
+  .text {
+    color: white;
+    padding: 15px 10px;
+    letter-spacing: 1.56px;
+    font-size: 14px;
+  }
+
+  &.choose-public {
     .text {
-        color: white;
-        padding: 15px 10px;
-        letter-spacing: 1.56px;
-        font-size: 14px;
+      background: $publicButton;
     }
+  }
 
-    &.choose-public {
-        .text {
-            background: $publicButton;
-        }
+  &.choose-private {
+    .text {
+      background: $privateButton;
     }
+  }
 
-    &.choose-private {
-        .text {
-            background: $privateButton;
-        }
+  &.choose-reset {
+    .text {
+      background: #555;
     }
-
-    &.choose-reset {
-        .text {
-            background: #555;
-        }
-    }
+  }
 }
 
 @media only screen and (max-width: 667px) {
-    .choice {
-        .text {
-            font-size: 12px;
-        }
+  .choice {
+    .text {
+      font-size: 12px;
     }
+  }
 }

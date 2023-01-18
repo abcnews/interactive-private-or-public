@@ -1,40 +1,18 @@
-const { h, render } = require('preact');
-const { getArguments, getSummary } = require('./loader');
+import { whenOdysseyLoaded } from '@abcnews/env-utils';
+import { selectMounts } from '@abcnews/mount-utils';
+import React from 'react';
+import { render } from 'react-dom';
+import App from './components/App';
+import { getArguments, getSummary } from './loader';
 
-const root = document.querySelector('[data-interactive-private-or-public-root]');
+whenOdysseyLoaded.then(() => {
+  const [el] = selectMounts('app');
+  const args = getArguments();
+  const summary = getSummary();
 
-function init() {
-    mount(getArguments(), getSummary());
-}
+  if (!el || !args || !summary) {
+    return;
+  }
 
-let mount = (args, summary) => {
-    const App = require('./components/App');
-    render(<App args={args} summary={summary} />, root, root.firstChild);
-};
-
-if (module.hot) {
-    const mountFunction = mount;
-    mount = (args, summary) => {
-        try {
-            mountFunction(args, summary);
-        } catch (error) {
-            const ErrorBox = require('./components/ErrorBox');
-            render(<ErrorBox error={error} />, root, root.firstChild);
-        }
-    };
-
-    module.hot.accept('./components/App', () => {
-        setTimeout(init);
-    });
-}
-
-if (process.env.NODE_ENV === 'development') {
-    require('preact/devtools');
-    console.debug(`[interactive-private-or-public] public path: ${__webpack_public_path__}`);
-}
-
-if (window.__ODYSSEY__) {
-    init();
-} else {
-    window.addEventListener('odyssey:api', init);
-}
+  render(<App args={args} summary={summary} />, el);
+});
