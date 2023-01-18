@@ -1,6 +1,6 @@
 {
 	"name": "interactive-private-or-public",
-	"version": "2.0.0",
+	"version": "2.0.1",
 	"description": "Find out if you should send your kid to a private school or a public school.",
 	"license": "MIT",
 	"private": true,
